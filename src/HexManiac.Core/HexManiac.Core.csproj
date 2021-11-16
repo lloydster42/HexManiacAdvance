@@ -2,8 +2,6 @@
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
     <ImplicitUsings>false</ImplicitUsings>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <Nullable>annotations</Nullable>
@@ -74,8 +72,6 @@
 
       del *.cs
     </PreBuildEvent>
-  </PropertyGroup>
-  <PropertyGroup>
     <PostBuildEvent>
       $(SolutionDir)utils\AutoImplement "HexManiac.Core.dll" IQuickEditItem
       move /Y QuickEditItemDecorator.cs  $(SolutionDir)artifacts\$(AssemblyName)\codegen
