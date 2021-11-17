@@ -75,6 +75,8 @@
       del "$(TargetDir)Models\Code\*.txt"
       copy "$(TargetDir)Models\Code\*.toml" "$(TargetDir)resources"
       del "$(TargetDir)Models\Code\*.toml"
+      copy "$(TargetDir)Models\Code\*.hma" "$(TargetDir)resources"
+      del "$(TargetDir)Models\Code\*.hma"
     </PostBuildEvent>
   </PropertyGroup>
 
