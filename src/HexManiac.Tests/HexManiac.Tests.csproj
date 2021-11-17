@@ -5,7 +5,8 @@
     <ImplicitUsings>false</ImplicitUsings>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <Nullable>annotations</Nullable>
-    <IsPackable>false</IsPackable>
+    <CodeGenDir>$(SolutionDir)artifacts\$(AssemblyName)\codegen</CodeGenDir>
+    <AutoImplement>$(SolutionDir)artifacts\AutoImplement.Tool\bin\$(Configuration)\net6.0\AutoImplement.Tool</AutoImplement>
   </PropertyGroup>
 
   <ItemGroup>
@@ -19,6 +20,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
+    <PackageReference Include="Xunit.SkippableFact" Version="1.4.13" />
     <ProjectReference Include="..\HexManiac.Core\HexManiac.Core.csproj" />
   </ItemGroup>
 
@@ -55,15 +57,15 @@
 
   <PropertyGroup>
     <PreBuildEvent>
-      if not exist $(SolutionDir)artifacts\$(AssemblyName)\codegen mkdir $(SolutionDir)artifacts\$(AssemblyName)\codegen
+      if not exist $(CodeGenDir) mkdir $(CodeGenDir)
 
-      $(SolutionDir)utils\AutoImplement $(SolutionDir)artifacts\HexManiac.Core\bin\$(Configuration)\net6.0\HexManiac.Core.dll ITabContent IFileSystem IViewPort IDataModel IMetadataInfo IQuickEditItem
-      move /Y StubTabContent.cs $(SolutionDir)artifacts\$(AssemblyName)\codegen
-      move /Y StubFileSystem.cs $(SolutionDir)artifacts\$(AssemblyName)\codegen
-      move /Y StubViewPort.cs $(SolutionDir)artifacts\$(AssemblyName)\codegen
-      move /Y StubDataModel.cs $(SolutionDir)artifacts\$(AssemblyName)\codegen
-      move /Y StubMetadataInfo.cs $(SolutionDir)artifacts\$(AssemblyName)\codegen
-      move /Y StubQuickEditItem.cs $(SolutionDir)artifacts\$(AssemblyName)\codegen
+      $(AutoImplement) $(SolutionDir)artifacts\HexManiac.Core\bin\$(Configuration)\net6.0\HexManiac.Core.dll ITabContent IFileSystem IViewPort IDataModel IMetadataInfo IQuickEditItem
+      move /Y StubTabContent.cs $(CodeGenDir)
+      move /Y StubFileSystem.cs $(CodeGenDir)
+      move /Y StubViewPort.cs $(CodeGenDir)
+      move /Y StubDataModel.cs $(CodeGenDir)
+      move /Y StubMetadataInfo.cs $(CodeGenDir)
+      move /Y StubQuickEditItem.cs $(CodeGenDir)
 
       del *.cs
     </PreBuildEvent>
