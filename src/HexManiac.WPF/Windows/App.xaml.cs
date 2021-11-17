@@ -29,6 +29,9 @@ namespace HavenSoft.HexManiac.WPF.Windows {
       private Mutex singleInstanceApplicationMutex;
       private readonly string appInstanceIdentifier;
 
+      [STAThread]
+      public static void Main(string[] args) => new App().Run();
+
       public App() {
          // name mutex and pipes based on the file location.
          // This allows us to have debug and release running at the same time,
