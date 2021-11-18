@@ -5,14 +5,14 @@
     <ImplicitUsings>false</ImplicitUsings>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <Nullable>annotations</Nullable>
-    <CodeGenDir>$(SolutionDir)artifacts\$(AssemblyName)\codegen</CodeGenDir>
-    <AutoImplement>$(SolutionDir)artifacts\AutoImplement.Tool\bin\$(Configuration)\net6.0\AutoImplement.Tool</AutoImplement>
+    <CodeGenDir>$(SolutionDir)artifacts\$(AssemblyName)\codegen\</CodeGenDir>
+    <AutoImplement>$(SolutionDir)artifacts\AutoImplement.Tool\bin\$(Configuration)\$(TargetFramework)\AutoImplement.Tool</AutoImplement>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="..\SharedAssemblyInfo.cs" />
-    <Compile Include="..\..\artifacts\HexManiac.Core\codegen\StubCommand.cs" />
-    <Compile Include="..\..\artifacts\HexManiac.Core\codegen\StubComparer`1.cs" />
-    <Compile Include="..\..\artifacts\HexManiac.Core\codegen\StubDisposable.cs" />
+    <Compile Include="$(SolutionDir)src\SharedAssemblyInfo.cs" />
+    <Compile Include="$(CodeGenDir)StubCommand.cs" />
+    <Compile Include="$(CodeGenDir)StubComparer`1.cs" />
+    <Compile Include="$(CodeGenDir)StubDisposable.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Models\Code\default.axve.axpe.bpee.toml">
@@ -62,7 +62,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\AutoImplement.Delegation\AutoImplement.Delegation.csproj" />
+    <ProjectReference Include="$(SolutionDir)\src\AutoImplement.Delegation\AutoImplement.Delegation.csproj" />
+    <ProjectReference Include="$(SolutionDir)src\AutoImplement.Tool\AutoImplement.Tool.csproj" ReferenceOutputAssembly="false" />
   </ItemGroup>
   <PropertyGroup>
     <PreBuildEvent>

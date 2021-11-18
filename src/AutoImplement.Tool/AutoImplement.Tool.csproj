@@ -8,7 +8,7 @@
     <Nullable>annotations</Nullable>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="..\SharedAssemblyInfo.cs" />
+    <Compile Include="$(SolutionDir)src\SharedAssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="System.Management" Version="6.0.0" />

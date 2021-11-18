@@ -6,8 +6,8 @@
     <ImplicitUsings>false</ImplicitUsings>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <Nullable>annotations</Nullable>
-    <CodeGenDir>$(SolutionDir)artifacts\$(AssemblyName)\codegen</CodeGenDir>
-    <AutoImplement>$(SolutionDir)artifacts\AutoImplement.Tool\bin\$(Configuration)\net6.0\AutoImplement.Tool</AutoImplement>
+    <CodeGenDir>$(SolutionDir)artifacts\$(AssemblyName)\codegen\</CodeGenDir>
+    <AutoImplement>$(SolutionDir)artifacts\AutoImplement.Tool\bin\$(Configuration)\$(TargetFramework)\AutoImplement.Tool</AutoImplement>
   </PropertyGroup>
 
   <ItemGroup>
@@ -22,17 +22,17 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Xunit.SkippableFact" Version="1.4.13" />
-    <ProjectReference Include="..\HexManiac.Core\HexManiac.Core.csproj" />
+    <ProjectReference Include="$(SolutionDir)src\HexManiac.Core\HexManiac.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="..\SharedAssemblyInfo.cs" />
-    <Compile Include="..\..\artifacts\$(AssemblyName)\codegen\StubFileSystem.cs" />
-    <Compile Include="..\..\artifacts\$(AssemblyName)\codegen\StubTabContent.cs" />
-    <Compile Include="..\..\artifacts\$(AssemblyName)\codegen\StubViewPort.cs" />
-    <Compile Include="..\..\artifacts\$(AssemblyName)\codegen\StubDataModel.cs" />
-    <Compile Include="..\..\artifacts\$(AssemblyName)\codegen\StubMetadataInfo.cs" />
-    <Compile Include="..\..\artifacts\$(AssemblyName)\codegen\StubQuickEditItem.cs" />
+    <Compile Include="$(SolutionDir)src\SharedAssemblyInfo.cs" />
+    <Compile Include="$(CodeGenDir)StubFileSystem.cs" />
+    <Compile Include="$(CodeGenDir)StubTabContent.cs" />
+    <Compile Include="$(CodeGenDir)StubViewPort.cs" />
+    <Compile Include="$(CodeGenDir)StubDataModel.cs" />
+    <Compile Include="$(CodeGenDir)StubMetadataInfo.cs" />
+    <Compile Include="$(CodeGenDir)StubQuickEditItem.cs" />
   </ItemGroup>
 
   <ItemGroup>
@@ -60,7 +60,7 @@
     <PreBuildEvent>
       if not exist $(CodeGenDir) mkdir $(CodeGenDir)
 
-      $(AutoImplement) $(SolutionDir)artifacts\HexManiac.Core\bin\$(Configuration)\net6.0\HexManiac.Core.dll ITabContent IFileSystem IViewPort IDataModel IMetadataInfo IQuickEditItem
+      $(AutoImplement) $(SolutionDir)artifacts\HexManiac.Core\bin\$(Configuration)\$(TargetFramework)\HexManiac.Core.dll ITabContent IFileSystem IViewPort IDataModel IMetadataInfo IQuickEditItem
       move /Y StubTabContent.cs $(CodeGenDir)
       move /Y StubFileSystem.cs $(CodeGenDir)
       move /Y StubViewPort.cs $(CodeGenDir)

@@ -33,6 +33,7 @@ namespace HavenSoft.HexManiac.WPF.Windows {
       public static void Main(string[] args) => new App().Run();
 
       public App() {
+         this.InitializeComponent();
          // name mutex and pipes based on the file location.
          // This allows us to have debug and release running at the same time,
          // or 0.3 and 0.4 running at the same time, etc.

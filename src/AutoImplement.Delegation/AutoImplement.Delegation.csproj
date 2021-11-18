@@ -7,6 +7,6 @@
     <Nullable>annotations</Nullable>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="..\SharedAssemblyInfo.cs" />
+    <Compile Include="$(SolutionDir)src\SharedAssemblyInfo.cs" />
   </ItemGroup>
 </Project>

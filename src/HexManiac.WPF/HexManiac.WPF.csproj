@@ -9,12 +9,10 @@
     <ImplicitUsings>false</ImplicitUsings>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <Nullable>annotations</Nullable>
-  </PropertyGroup>
-  <PropertyGroup>
-    <ApplicationIcon>Resources\AppIcon.ico</ApplicationIcon>
+  <ApplicationIcon>Resources\AppIcon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="..\SharedAssemblyInfo.cs" />
+    <Compile Include="$(SolutionDir)src\SharedAssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\MoveRelearnerTesting.hma">
@@ -37,7 +35,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\HexManiac.Core\HexManiac.Core.csproj" />
+    <ProjectReference Include="$(SolutionDir)src\HexManiac.Core\HexManiac.Core.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\AppIcon.ico" />
@@ -47,14 +45,6 @@
     <PostBuildEvent>
       if not exist "$(TargetDir)resources" mkdir "$(TargetDir)resources"
       if not exist "$(TargetDir)resources\Scripts" mkdir "$(TargetDir)resources\Scripts"
-      copy "$(TargetDir)ref\*.dll" "$(TargetDir)resources"
-      del "$(TargetDir)ref\*.dll"
-      copy "$(TargetDir)*.dll" "$(TargetDir)resources"
-      del "$(TargetDir)*.dll"
-      copy "$(TargetDir)*.xml" "$(TargetDir)resources"
-      del "$(TargetDir)*.xml"
-      copy "$(TargetDir)*.pdb" "$(TargetDir)resources"
-      del "$(TargetDir)*.pdb"
       copy "$(TargetDir)Models\Code\*.txt" "$(TargetDir)resources"
       del "$(TargetDir)Models\Code\*.txt"
       copy "$(TargetDir)Models\Code\*.hma" "$(TargetDir)resources"
@@ -65,6 +55,10 @@
       del "$(TargetDir)Scripts\*.hma"
       del "$(TargetDir)Scripts\*.png"
       del "$(TargetDir)Scripts\*.txt"
+      
+      <!-- Delete AutoImplement.Tool, it's not needed in this output directory -->
+      del "$(TargetDir)AutoImplement.Tool.exe"
+      del "$(TargetDir)AutoImplement.Tool.*.json"
     </PostBuildEvent>
   </PropertyGroup>
 </Project>
