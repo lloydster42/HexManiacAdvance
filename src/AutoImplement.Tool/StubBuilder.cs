@@ -51,7 +51,7 @@ namespace HavenSoft.AutoImplement.Tool {
 
       public void AppendExtraMembers(Type interfaceType) { }
 
-      /// <example>
+      // <example>
       // public Func<int, int, int> Max { get; set; }
       // int ICalculator.Max(int a, int b)
       // {
@@ -77,7 +77,7 @@ namespace HavenSoft.AutoImplement.Tool {
       //       return default(double);
       //    }
       // }
-      /// </example>
+      // </example>
       /// <remarks>
       /// Methods in interfaces are replaced with delegate properties.
       /// Assigning one of those delegates a value will change the behavior of that method.
@@ -114,7 +114,7 @@ namespace HavenSoft.AutoImplement.Tool {
          implementedMethods.Add($"{method.Name}({method.ParameterTypes})");
       }
 
-      /// <example>
+      // <example>
       // public EventImplementation<EventArgs> ValueChanged = new EventImplementation<EventHandler>();
       // 
       // event EventHandler INotifyValueChanged.ValueChanged
@@ -128,19 +128,19 @@ namespace HavenSoft.AutoImplement.Tool {
       //       ValueChanged.remove(new EventHandler<EventArgs>(value));
       //    }
       // }
-      /// </example>
-      /// <remarks>
-      /// Events are replaces with an EventImplementation field.
-      /// Explicit interface implementations then call that EventImplementation.
-      /// 
-      /// EventImplementation exposes add, remove, handlers, and +/- operators along with an Invoke method.
-      /// This allows you to assign custom add/remove handlers to the Stub, or make decision based on the individual added handlers,
-      /// or use +=, -=, and .Invoke as if the EventImplementation were actually an event.
-      /// 
+      // </example>
+      // <remarks>
+      // Events are replaces with an EventImplementation field.
+      // Explicit interface implementations then call that EventImplementation.
+      // 
+      // EventImplementation exposes add, remove, handlers, and +/- operators along with an Invoke method.
+      // This allows you to assign custom add/remove handlers to the Stub, or make decision based on the individual added handlers,
+      // or use +=, -=, and .Invoke as if the EventImplementation were actually an event.
+      // 
       // Note that the explicit implementation always casts added/removed delegates to EventHandler<T>.
       // This is to avoid having to deal with .net's 2 types of EventHandlers separately.
       // Example: RoutedEventHandler vs EventHandler<RoutedEventArgs>.
-      /// </remarks>
+      // </remarks>
       public void AppendEvent(EventInfo info, MemberMetadata eventData) {
          writer.Write($"public EventImplementation<{eventData.HandlerArgsType}> {info.Name} = new EventImplementation<{eventData.HandlerArgsType}>();");
          writer.Write(string.Empty);
@@ -236,24 +236,24 @@ namespace HavenSoft.AutoImplement.Tool {
 
       public void BuildCompleted() { }
 
-      ///<example>
-      ///public delegate void MethodWithGenericInputDelegate_T<T>(T input);
-      ///private readonly Dictionary<Type[], object> MethodWithGenericInputDelegates_T = new Dictionary<Type[], object>();
-      ///public void ImplementMethodWithGenericInput<T>(MethodWithGenericInputDelegate_T<T> implementation)
-      ///{
-      ///   var key = new Type[] { typeof(T) };
-      ///   MethodWithGenericInputDelegates[key] = implementation;
-      ///}
-      ///public void MethodWithGenericInput<T>(T input)
-      ///{
-      ///   var key = new Type[] { typeof(T) };
-      ///   object implementation;
-      ///   if (MethodWithGenericInputDelegates.TryGetValue(key, out implementation))
-      ///   {
-      ///      ((MethodWithGenericInputDelegate<T>)implementation).Invoke(input);
-      ///   }
-      ///}
-      ///</example>
+      // <example>
+      // public delegate void MethodWithGenericInputDelegate_T<T>(T input);
+      // private readonly Dictionary<Type[], object> MethodWithGenericInputDelegates_T = new Dictionary<Type[], object>();
+      // public void ImplementMethodWithGenericInput<T>(MethodWithGenericInputDelegate_T<T> implementation)
+      // {
+      //    var key = new Type[] { typeof(T) };
+      //    MethodWithGenericInputDelegates[key] = implementation;
+      // }
+      // public void MethodWithGenericInput<T>(T input)
+      // {
+      //    var key = new Type[] { typeof(T) };
+      //    object implementation;
+      //    if (MethodWithGenericInputDelegates.TryGetValue(key, out implementation))
+      //    {
+      //       ((MethodWithGenericInputDelegate<T>)implementation).Invoke(input);
+      //    }
+      // }
+      //</example>
       private void AppendGenericMethod(MethodInfo info, MemberMetadata method) {
          var typesExtension = SanitizeMethodName(method.ParameterTypes);
          var typeofList = info.GetGenericArguments().Select(type => $"typeof({type.Name})").Aggregate((a, b) => $"{a}, {b}");

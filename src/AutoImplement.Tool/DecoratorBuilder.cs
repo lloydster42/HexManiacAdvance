@@ -45,13 +45,13 @@ namespace HavenSoft.AutoImplement.Tool {
       }
 
       /// <example>
-      // public virtual void Dispose()
-      // {
-      //    if (InnerDisposable != null)
-      //    {
-      //       InnerDisposable.Dispose();
-      //    }
-      // }
+      /// public virtual void Dispose()
+      /// {
+      ///    if (InnerDisposable != null)
+      ///    {
+      ///       InnerDisposable.Dispose();
+      ///    }
+      /// }
       /// </example>
       /// <remarks>
       /// Default implementations for decorator members do as little as possible.

@@ -2,7 +2,8 @@
   <PropertyGroup>
     <OutputPath>..\..\artifacts\$(MSBuildProjectName)\bin\$(Configuration)\</OutputPath>
     <BaseOutputPath>..\..\artifacts\$(MSBuildProjectName)\bin\$(Configuration)\</BaseOutputPath>
-	<BaseIntermediateOutputPath>..\..\artifacts\$(MSBuildProjectName)\obj\$(Configuration)\</BaseIntermediateOutputPath>
-	<IntermediateOutputPath>..\..\artifacts\$(MSBuildProjectName)\obj\$(Configuration)\</IntermediateOutputPath>
+    <BaseIntermediateOutputPath>..\..\artifacts\$(MSBuildProjectName)\obj\$(Configuration)\</BaseIntermediateOutputPath>
+    <IntermediateOutputPath>..\..\artifacts\$(MSBuildProjectName)\obj\$(Configuration)\</IntermediateOutputPath>
+    <NoWarn>1591;1701;1702</NoWarn>
   </PropertyGroup>
 </Project>

@@ -98,7 +98,7 @@ namespace HavenSoft.AutoImplement.Tool {
          Console.WriteLine("Namespaces on types are optional.");
       }
 
-      /// <see cref="https://stackoverflow.com/questions/2531837/how-can-i-get-the-pid-of-the-parent-process-of-my-application/2533287#2533287"/>
+      /// see https://stackoverflow.com/questions/2531837/how-can-i-get-the-pid-of-the-parent-process-of-my-application/2533287#2533287
       private static void PauseIfStartedByExplorer() {
          var myId = Process.GetCurrentProcess().Id;
          var query = $"SELECT ParentProcessId FROM Win32_Process WHERE ProcessId = {myId}";
